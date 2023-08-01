@@ -1,0 +1,52 @@
+@model IList<PatientCareEvent>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">PatientCareEvens</li>
+    </ol>
+</nav>
+      @* @if (User.IsInRole(Role.manager.ToString())) *@
+
+    <div class="mt-4 mb-4">
+       <!-- add an action link styled as a button to navigate to Create Action -->
+       <a asp-action="Create" class="btn btn-primary btn-sm">Add PatientCareEvent</a>
+    </div>
+
+<div class="card border rounded shadow p-4">
+    <h3>PatientCareEvent List</h3>
+    <!-- Title bar -->
+    <div class="d-flex align-items-center justify-content-between">
+    <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th> <th>DateTime</th> <th>Carer Id</th> <th>Patient Id</th> <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var pce in Model) {
+            <tr>
+                <td>@pce.Id</td> <td>@pce.DateTimeOfEvent.ToShortDateString()</td><td>@pce.UserId</td> <td>@pce.PatientId</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@pce.Id">
+                        <i class="material-icons" title="View CareEvent">View</i>
+                    </a> 
+                    @* @if (User.IsInRole("Admin") || User.IsInRole("Manager"))  *@
+                    
+                        <a asp-action="Edit" asp-route-id="@pce.Id">
+                            <i class="material-icons" title="Edit CareEvent">edit</i>
+                        </a> 
+                    
+                    @* @if (User.IsInRole(Role.admin.ToString())) *@
+                    
+                        <a asp-action="Delete" asp-route-id=@pce.Id>
+                            <i class="material-icons" title="Delete CareEvent">delete</i>
+                        </a> 
+        
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

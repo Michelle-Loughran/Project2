@@ -1,0 +1,52 @@
+@model IList<Condition>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Conditions</li>
+    </ol>
+</nav>
+
+<div class="card border rounded shadow mt-4 p-4">
+    <div class="d-flex align-items-center justify-content-between">
+         <h3>Condtion List</h3>
+        <a asp-roles="manager" asp-action="Create" class="btn btn-primary btn-sm">
+            <i class="bi bi-bag-plus-fill me-2" title="Add Condition"></i>
+            <span>Add Condition</span>
+        </a>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th> 
+                <th>Name</th> 
+                <th>Description</th>              
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var con in Model) {
+                <tr>
+                    <td>@con.Id</td> 
+                    <td>@con.Name</td>
+                    <td>@con.Description.Substring(0,10)...</td>
+                    <td class="d-flex gap-1">
+                        <a asp-action="Details" asp-route-id="@con.Id">
+                            <i class="bi bi-info-circle" title="View Condition"></i>
+                        </a>              
+                        <a asp-roles="manager" asp-action="Edit" asp-route-id="@con.Id">
+                            <i class="bi bi-pencil" title="Edit Condition"></i>
+                        </a>
+                        <a asp-roles="manager" asp-action="Delete" asp-route-id=@con.Id>
+                            <i class="by bi-trash" title="Delete Condtion"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    
+</div>
+
+

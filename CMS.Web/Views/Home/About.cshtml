@@ -1,0 +1,27 @@
+@model AboutViewModel
+<style>
+img {
+  width: 80%;
+}
+</style>
+<div class="card rounded shadow p-4">
+
+    <div class="card-header bg-info mb-3">
+        <h2>@Model.Title</h2>
+    </div>
+    <div class="card-body">
+        <div class="card-body">
+            <h5 class="card-title">Mission Statement</h5>
+            <p><em>@Model.Message</em></p>
+        </div>
+          <p class="lead">
+            <div class="card rounded shadow p-4">
+    <img src = "/images/female-caregiver-helping-senior-man-picture-id669885088.jpg" />
+    </p>
+    </div>
+
+        <div class="card-footer text-muted">
+            <div>Created on @Model.FormedString <cite title="Source Title">(@Model.Days days ago)</cite></div>
+        </div>
+  </div>
+</div>

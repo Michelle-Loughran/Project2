@@ -1,0 +1,35 @@
+@model Condition  
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+        <li class="breadcrumb-item"><a asp-controller="Condition" asp-action="Index">Conditions</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Delete</li>
+    </ol>
+</nav>
+<div class="card rounded shadow p-4">
+  <h3 class="mb-4">Delete Condition?   <span class="ms-3 text-danger fs-5">   Are you sure?</span></h3> 
+  
+
+  <!-- display the patient using a <dl> as per Details.cshtml -->     
+  <dl class="row">  
+        <dt class="col-4 pb-1">Id</dt>
+    <dd class="col-8 pb-1">@Model.Id</dd>
+
+    <dt class="col-4 pb-1">Name</dt>
+    <dd class="col-8 pb-1">@Model.Name</dd>
+
+    <dt class="col-4 pb-1">Description</dt>
+    <dd class="col-8 pb-1">@Model.Description</dd>
+       
+  </dl>
+  <div class="mt-4">
+    <!-- form to submit post request to DeleteConfirm action     --> 
+    <form asp-action="DeleteConfirm" asp-route-id="@Model.Id">
+        <input type="hidden" asp-for="Id" class="form-control"/>
+        <button type="submit" class="btn btn-danger" aria-label="delete">Delete</button>
+        <a class="btn btn-secondary" asp-action="Details" asp-route-id="@Model.Id" >Cancel</a>
+    </form>
+  </div>
+</div>
+</div>
+

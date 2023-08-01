@@ -1,0 +1,41 @@
+@* @model IList<FamilyMember>
+
+<div class="card border rounded shadow p-4">
+
+    <!-- Title bar -->
+    <div class="d-flex align-items-center justify-content-between">
+        <h3>Patient List</h3>
+        
+        <a class="btn btn-sm btn-primary" asp-action="create" title="add student" aria-label="add patient">
+           <i class="bi bi-plus"></i> Create
+        </a>
+    </div>
+
+    <!-- List of family members -->
+    <table class="table table-hover mt-4">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Firstname</th>
+                <th>Surname</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var p in Model)
+            {
+                <tr>
+                    <td>@p.Id</td>
+                    <td>@p.Firstname</td>
+                    <td>@p.Surname</td>
+                   
+                    <td>                       
+                        <a asp-action="Details" asp-route-id=@p.Id>
+                            <i class="bi bi-display-fill me-2" title="view student" arial-label="view patient"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div> *@

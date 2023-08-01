@@ -1,0 +1,47 @@
+@* @model FamilyMember
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+        <li class="breadcrumb-item"><a asp-controller="Family" asp-action="Index">Patients</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Details</li>
+    </ol>
+</nav>
+<h3 class="mt-4 mb-4">Family Member Details:          @Model.Firstname   @Model.Surname  </h3>        
+<div class="card rounded shadow p-4">
+    <!-- Display patient  details -->
+    <div class="row">
+        <!-- Details and Navigation -->
+        <div class="col-8 d-flex flex-column justify-content-between">
+            <!-- Patient details -->
+            <div>
+                <h2 class="mb-4 text-primary">Family Details</h2>
+                <dl class="row">  
+
+                    <dt class="col-4 pb-1">Firstname</dt>
+                    <dd class="col-8 pb-1">@Model.Firstname</dd>
+                    <dt class="col-4 pb-1">Surname</dt>
+                    <dd class="col-8 pb-1">@Model.Surname</dd>
+                    <dt class="col-4 pb-1">MobileNumber</dt>
+                    <dd class="col-8 pb-1">@Model.MobileNumber</dd>
+                    <dt class="col-4 pb-1">EmailAddress</dt>
+                    <dd class="col-8 pb-1">@Model.EmailAddress</dd>
+                    <dt class="col-4 pb-1">PatientFamily</dt>
+                    <dd class="col-8 pb-1">@Model.PatientFamilies</dd>
+                </dl>
+            </div>
+        </div>
+    </div>    
+</div>
+<!-- action options -->
+        <div class="mt-4 mb-4"> 
+        <a asp-controller="Family" asp-action="Index" class="btn btn-primary"><i class="bi bi-list"></i>
+            Patient List
+        </a>    
+        <a asp-controller="Family" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary"><i class="bi bi-pen"></i>
+            Edit Patient
+        </a>  
+        <a asp-controller="Family" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-primary"><i class = "bi bi-trash"></i>
+            Delete
+        </a> 
+      </div>
+ *@

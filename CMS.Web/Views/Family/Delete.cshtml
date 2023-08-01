@@ -1,0 +1,42 @@
+@* @model FamilyMember
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+        <li class="breadcrumb-item"><a asp-controller="Family" asp-action="Index">Families</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Delete</li>
+    </ol>
+</nav>
+<div class="card rounded shadow p-4">
+  <h3 class="mb-4">Delete Family Member? <span class="ms-3 text-danger fs-5">Are you sure?</span></h3> 
+  
+
+  <!-- display the family using a <dl> as per Details.cshtml -->     
+  <dl class="row">  
+    <dt class="col-4 pb-1">Firstname</dt>
+    <dd class="col-8 pb-1">@Model.Firstname</dd>
+
+    <dt class="col-4 pb-1">Surname</dt>
+    <dd class="col-8 pb-1">@Model.Surname</dd>
+
+    <dt class="col-4 pb-1">MobileNumber</dt>
+    <dd class="col-8 pb-1">@Model.MobileNumber</dd>
+
+    <dt class="col-4 pb-1">EmailAddress</dt>
+    <dd class="col-8 pb-1">@Model.EmailAddress</dd>
+
+    <dt class="col-4 pb-1">PatientFamily</dt>
+    <dd class="col-8 pb-1">@Model.PatientFamilies</dd>
+
+  </dl>
+  <div class="mt-4">
+    <!-- form to submit post request to DeleteConfirm action     --> 
+    <form asp-action="DeleteConfirm" asp-route-id="@Model.Id">
+        <input type="hidden" asp-for="Id" class="form-control"/>
+        <button type="submit" class="btn btn-danger" aria-label="delete">Delete</button>
+        <a class="btn btn-secondary" asp-action="Details" asp-route-id="@Model.Id" >Cancel</a>
+    </form>
+  </div>
+</div>
+
+</div>
+ *@

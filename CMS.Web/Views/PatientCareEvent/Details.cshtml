@@ -1,0 +1,35 @@
+@model PatientCareEvent
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+        <li class="breadcrumb-item"><a asp-controller="Carer" asp-action="Index">Carers</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Details</li>
+    </ol>
+</nav>
+
+<h3 class="mt-4 mb-4">Patient Details: @Model.Patient.Name  </h3>        
+
+<div class="row">
+    <div class="col-8 card rounded shadow pt-3">
+        <dl class="row">              
+                <dt class=col-sm-5>Id</dt>
+                <dd class="col-sm-7">@Model.Id</dd>
+                <dt class=col-sm-5>CarePlan</dt>
+                <dd class="col-sm-7">@Model.CarePlan</dd>     
+                <dt class=col-sm-5>Issues</dt>
+                <dd class="col-sm-7">@Model.Issues</dd>                
+        </dl>
+  
+    </div>
+
+    <!-- action options -->
+    <div class="mt-4 mb-4"> 
+        <a asp-controller="Patient" asp-action="Details" asp-route-id="@Model.Patient.Id" class="btn btn-primary">
+            Cancel          
+        </a> 
+    </div>
+</div>
+
+
+            

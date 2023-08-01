@@ -1,0 +1,52 @@
+@model IList<User>
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Carers</li>
+    </ol>
+</nav>
+      @* @if (User.IsInRole(Role.manager.ToString())) *@
+
+    <div class="mt-4 mb-4">
+       <!-- add an action link styled as a button to navigate to Create Action -->
+       <a asp-action="Create" class="btn btn-primary btn-sm">Add Carer</a>
+    </div>
+
+<div class="card border rounded shadow p-4">
+    <h3>Carer List</h3>
+    <!-- Title bar -->
+    <div class="d-flex align-items-center justify-content-between">
+    <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th> <th>Title</th> <th>Firstname</th> <th>Surname</th><th>DOB</th><th>National Insurance No</th> <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var c in Model) {
+            <tr>
+                <td>@c.Id</td> <td>@c.Title</td><td>@c.Firstname</td> <td>@c.Surname</td> <td>@c.DOB.ToShortDateString()</td><td>@c.NationalInsuranceNo</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@c.Id">
+                        <i class="material-icons" title="View Carer">View</i>
+                    </a> 
+                    @* @if (User.IsInRole("Admin") || User.IsInRole("Manager"))  *@
+                    
+                        <a asp-action="Edit" asp-route-id="@c.Id">
+                            <i class="material-icons" title="Edit Carer">edit</i>
+                        </a> 
+                    
+                    @* @if (User.IsInRole(Role.admin.ToString())) *@
+                    
+                        <a asp-action="Delete" asp-route-id=@c.Id>
+                            <i class="material-icons" title="Delete Carer">delete</i>
+                        </a> 
+        
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+

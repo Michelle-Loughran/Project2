@@ -1,0 +1,41 @@
+@model Condition
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+        <li class="breadcrumb-item"><a asp-controller="Condition" asp-action="Index">Conditions</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Details</li>
+    </ol>
+</nav>
+
+    
+<div class="card rounded shadow mt-2 p-4">
+    <h3 class="mt-4 mb-4">Condition</h3>   
+    <dl class="row">              
+        <dt class=col-4>Id</dt>
+        <dd class="col-8">@Model.Id</dd>
+        <dt class=col-4>Name</dt>
+        <dd class="col-8">@Model.Name</dd>
+        <dt class="col-4">Description</dt>
+        <dd class="col-8">@Model.Description</dd>
+    </dl>
+
+    <!-- controls -->
+    <div>
+        <a asp-controller="Condition" asp-action="Index" class="btn btn-primary"><i class="bi bi-list"></i>
+            Condition List
+        </a>    
+        <a asp-controller="Condition" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary"><i class="bi bi-pen"></i>
+            Edit Condition
+        </a>  
+        <a asp-controller="Condition" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-primary"><i class = "bi bi-trash"></i>
+            Delete
+        </a> 
+    </div>
+
+</div>
+
+
+
+
+            

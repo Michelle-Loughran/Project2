@@ -1,0 +1,62 @@
+@model IList<Patient>
+@{
+    var pl = Model;
+    var u = User;
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Patients</li>
+    </ol>
+</nav>
+
+<div class="card border rounded shadow mt-4 p-4">
+   
+    <div class="d-flex align-items-center justify-content-between">
+         <h3>Patient List</h3>
+        <a asp-roles="manager" asp-action="Create" class="btn btn-primary btn-sm">
+            <i class="bi bi-bag-plus-fill me-2" title="Add Patient"></i>
+            <span>Add Patient</span>
+        </a>
+    </div>
+
+    <table class="table table-striped mt-4">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Firstname</th>
+                <th>Surname</th>
+                <th>DOB</th>
+                <th>National Insurance No</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var p in Model)
+            {
+                <tr>
+                    <td>@p.Id</td>
+                    <td>@p.Title</td>
+                    <td>@p.Firstname</td>
+                    <td>@p.Surname</td>
+                    <td>@p.DOB.ToShortDateString()</td>
+                    <td>@p.NationalInsuranceNo</td>
+                    <td class="d-flex gap-1">
+                        <a asp-action="Details" asp-route-id="@p.Id">
+                            <i class="bi bi-info-circle" title="View Patient"></i>
+                        </a>              
+                        <a asp-roles="manager,admin" asp-action="Edit" asp-route-id="@p.Id">
+                            <i class="bi bi-pencil" title="Edit Patient"></i>
+                        </a>
+                        <a asp-roles="manager,admin" asp-action="Delete" asp-route-id=@p.Id>
+                            <i class="by bi-trash" title="Delete Patient"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
