@@ -13,7 +13,6 @@ public class FamilyMember
     public int PatientId { get; set; }
     public Patient Patient { get; set; }
 
-
     // Foreign keys the family member of the patient
     public int MemberId { get; set; }
     public User Member { get; set; }

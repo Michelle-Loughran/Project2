@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace CMS.Data.Entities;
 
 // Add User roles relevant to your application
-public enum Role { admin, manager, carer, family, guest }
+public enum Role { admin, manager, carer, socialWorker, family, guest }
 
 public class User
 {

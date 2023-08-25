@@ -112,7 +112,8 @@ public class PatientServiceDb : IPatientService
     public User AddUser(string firstname, string surname, string email, string password, Role role)
     {
         // return new user
-        return AddUser(new User {
+        return AddUser(new User
+        {
             Firstname = firstname,
             Surname = surname,
             Email = email,
@@ -133,7 +134,7 @@ public class PatientServiceDb : IPatientService
         {
             Firstname = u.Firstname,
             Surname = u.Surname,
-            Email = u.Email,           
+            Email = u.Email,
             Password = Hasher.CalculateHash(u.Password),  // hash password
             Role = u.Role,
 
@@ -608,7 +609,7 @@ public class PatientServiceDb : IPatientService
                  .FirstOrDefault(pce => pce.Id == id);
     }
 
-     public IList<PatientCareEvent> GetScheduledPatientCareEventsForUser(int id)
+    public IList<PatientCareEvent> GetScheduledPatientCareEventsForUser(int id)
     {
         return db.PatientCareEvents
                  .Include(e => e.User)
@@ -639,7 +640,7 @@ public class PatientServiceDb : IPatientService
         var pce = new PatientCareEvent
         {
             DateTimeOfEvent = ce.DateTimeOfEvent,
-            CarePlan = ce.CarePlan,           
+            CarePlan = ce.CarePlan,
             PatientId = ce.PatientId,
             UserId = ce.UserId
             // Issues and DateTimeCompleted are not set at this time
@@ -661,7 +662,7 @@ public class PatientServiceDb : IPatientService
 
         careevent.Issues = ce.Issues;
         careevent.DateTimeCompleted = ce.DateTimeCompleted;
-       
+
         db.SaveChanges();
         return careevent;
     }

@@ -1,7 +1,8 @@
 namespace CMS.Data.Entities;
 
-public class Paged<T> {        
-    public List<T> Data { get; set;}
+public class Paged<T>
+{
+    public List<T> Data { get; set; }
     public int TotalRows { get; set; }
     public int CurrentPage { get; set; }
     public int PageSize { get; set; }
@@ -13,16 +14,17 @@ public class Paged<T> {
 
 public static class PagedExtensions
 {
-    public static Paged<T> ToPaged<T>(this IQueryable<T> query, int page = 1, int size = 10, string orderBy = "id", string direction = "asc" )
-    {       
+    public static Paged<T> ToPaged<T>(this IQueryable<T> query, int page = 1, int size = 10, string orderBy = "id", string direction = "asc")
+    {
         // determine total avilable rows
         var totalRows = query.Count();
 
         // slice page required         
-        var data = query.Skip((page-1)*size).Take(size).ToList();
-        
+        var data = query.Skip((page - 1) * size).Take(size).ToList();
+
         // build paged result
-        var paged = new Paged<T> {
+        var paged = new Paged<T>
+        {
             Data = data,
             TotalRows = totalRows,
             PageSize = size,
@@ -31,7 +33,7 @@ public static class PagedExtensions
             //invert current direction for next query
             Direction = direction.ToLower() == "desc" ? "asc" : "desc"
         };
-        
+
         return paged;
     }
 }
