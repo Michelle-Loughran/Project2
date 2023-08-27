@@ -17,6 +17,7 @@ namespace CMS.Data.Services
         User AddUser(User u);
         User Register(User u);
         User UpdateUser(User user);
+        bool DeleteUser(int id);
         User Authenticate(string email, string password);
         string ForgotPassword(string email);
         User ResetPassword(string email, string token, string password);

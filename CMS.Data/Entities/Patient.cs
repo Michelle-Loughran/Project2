@@ -78,5 +78,6 @@ public class Patient
     public List<PatientCareEvent> CareEvents { get; set; }
     public List<PatientCondition> PatientConditions { get; set; }
     public List<FamilyMember> FamilyMembers { get; set; }
+    public List<Appointment> Appointments { get; set; }
 
 }

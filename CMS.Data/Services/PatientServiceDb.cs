@@ -196,7 +196,17 @@ public class PatientServiceDb : IPatientService
         db.SaveChanges();
         return user;
     }
-
+    public bool DeleteUser(int id)
+    {
+        var u = GetUser(id);
+        if (u == null)
+        {
+            return false;
+        }
+        db.Users.Remove(u);
+        db.SaveChanges();
+        return true;
+    }
     public string ForgotPassword(string email)
     {
         var user = db.Users.FirstOrDefault(u => u.Email == email);

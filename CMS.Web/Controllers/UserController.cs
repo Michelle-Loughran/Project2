@@ -41,6 +41,35 @@ namespace CMS.Web.Controllers
         {
             return View();
         }
+            // GET /carers/details/{id}
+    public IActionResult Details(int id)
+    {
+        var user = _svc.GetUser(id);
+      
+        // check if carers is null and alert/redirect 
+        if (user is null) {
+                Alert("User Does not Exist", AlertType.warning);
+            return RedirectToAction(nameof(Index));
+        }
+
+        return View(user);
+    }
+        // GET: /users/create   
+    // public IActionResult Create()
+    // {
+       
+    //     //return the new carer to the view
+    //     var user = new User ();
+
+    //     //return the new patient to the view
+    //     return View(user);
+    // }
+        // HTTP GET - Display Register page
+        public IActionResult Register()
+        {
+            return View();
+        }
+
         // HTTP POST - Login action
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -62,12 +91,6 @@ namespace CMS.Web.Controllers
             return Redirect("/");
         }   
        
-
-        // HTTP GET - Display Register page
-        public IActionResult Register()
-        {
-            return View();
-        }
          // HTTP POST - Register action
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -142,9 +165,42 @@ namespace CMS.Web.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+        // GET / user/delete/{id}   
+    public IActionResult Delete(int id)
+    {
+        // load the user using the service
+        var user = _svc.GetUser(id);
+        // check the returned user is not null and if so return NotFound()
+        if (user == null)
+        {
+            Alert("User not found", AlertType.warning);
+            return RedirectToAction(nameof(Index));
+        }     
+        // pass carer to view for deletion confirmation
+        return View(user);
+    }
+ // POST /carer/delete/{id}
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult DeleteConfirm(int id)
+    {
+        // delete patient via service
+        var deleted = _svc.DeleteUser(id);
+        if (deleted)
+        {
+            Alert("User deleted", AlertType.success);            
+        }
+        else
+        {
+            Alert("User could not  be deleted", AlertType.warning);           
+        }
+        
+        // redirect to the index view
+        return RedirectToAction(nameof(Index));
+    }
 
         // HTTP GET - Allow admin to update a User
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, manager")]
         public IActionResult Update(int id)
         {
             // retrieve user 
@@ -161,7 +217,7 @@ namespace CMS.Web.Controllers
         }
 
         // HTTP POST - Update User action
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, manager ")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Update(ProfileViewModel m)

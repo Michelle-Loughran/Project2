@@ -18,7 +18,7 @@ namespace CMS.Web.Controllers
         }
 
 
-        [Authorize(Roles="admin, manager")]
+        // [Authorize(Roles="admin, manager")]
         public IActionResult Index()
         {
             // load patientcare-events using service and pass to view
@@ -28,7 +28,7 @@ namespace CMS.Web.Controllers
             return View(pce);
         }
 
-        [Authorize(Roles="carer, manager")]
+        [Authorize(Roles="admin, carer, manager")]
 
         public IActionResult Scheduled()
         {
@@ -83,8 +83,14 @@ namespace CMS.Web.Controllers
         [ValidateAntiForgeryToken]
         [HttpPost]
         [Authorize(Roles="manager")]
-        public IActionResult Schedule(int patientId, [Bind("Id, DateTimeOfEvent, CarePlan, PatientId, UserId")] PatientCareEvent pce)
-        {   
+        public IActionResult Schedule(int patientId, [Bind("DateTimeOfEvent, CarePlan, PatientId, UserId")] PatientCareEvent pce)
+        {    // Check patient care event being passed in has Id preset before adding properties
+            if (pce == null)
+            {
+                Alert($"Patient Care Event Does not exist {pce.Id}", AlertType.warning);
+                return RedirectToAction(nameof(Index));
+            }
+
             // complete POST action to add patient care event to database
             if (ModelState.IsValid)
             {
@@ -96,12 +102,6 @@ namespace CMS.Web.Controllers
                 return RedirectToAction(nameof(Details), "Patient", new { Id = pce.PatientId });
             }
 
-            // reload patient and user into model being sent back for validation
-            var ce = svc.GetPatientCareEventById(pce.Id);
-            pce.Patient = ce.Patient;
-            pce.User = ce.User;
-            //recreate carer select list
-            ViewBag.Carers = new SelectList(svc.GetAllCarers(), "Id", "Name");
             // redisplay the form for editing as there are validation errors
             return View(pce);
         }

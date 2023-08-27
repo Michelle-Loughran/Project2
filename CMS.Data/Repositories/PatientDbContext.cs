@@ -19,6 +19,7 @@ namespace CMS.Data.Repositories
         public DbSet<PatientCondition> PatientConditions { get; set; }
         public DbSet<FamilyMember> FamilyMembers { get; set; }
         public DbSet<PatientCareEvent> PatientCareEvents { get; set; }
+        public DbSet<Appointment> Appointments { get; set;}
 
         // Configure the context with logging - remove in production
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

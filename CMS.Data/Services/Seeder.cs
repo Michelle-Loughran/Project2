@@ -30,7 +30,8 @@ namespace CMS.Data.Services
                     Firstname = "The",
                     Surname = "Manager",
                     Email = "manager@mail.com",
-                    Password = "password",                   
+                    Password = "password",  
+                    NationalInsuranceNo = "NR111213F",                 
                     Role = Role.manager
                 }
             );
@@ -41,8 +42,8 @@ namespace CMS.Data.Services
             var c1 = svc.AddCarer(new User
             {
                 Title = "Mr",
-                Firstname = "Carer",
-                Surname = "One",
+                Firstname = "Basil",
+                Surname = "Brush",
                 DOB = new DateTime(1977, 05, 28),
                 NationalInsuranceNo = "NR456123D",
                 DBSCheck = true,
@@ -89,7 +90,7 @@ namespace CMS.Data.Services
                 DOB = new DateTime(1965, 06, 30),
                 NationalInsuranceNo = "NR612345D",
                 DBSCheck = true,
-                Email = "carer3H@mail.com",
+                Email = "carer3@mail.com",
                 Password = "password",
                 Street = "35 Warren Hill",
                 Town = "Newry",
@@ -98,7 +99,26 @@ namespace CMS.Data.Services
                 MobileNumber = "01234567891",
                 HomeNumber = "02830303030",
                 Qualifications = "8 GCSE's, Maths, A, English B, Social Care A, Accounts C,Economics C Art B, RE C, PSE C",
-                PhotoUrl = "/images/Carer2.jpg",             
+                PhotoUrl = "/images/carer3.jpg",             
+            });
+                var c4 = svc.AddCarer(new User
+            {
+                Title = "Mrs",
+                Firstname = "Amanda",
+                Surname = "Hasselhoff",
+                DOB = new DateTime(1970, 06, 30),
+                NationalInsuranceNo = "NR3212432D",
+                DBSCheck = true,
+                Email = "carer4@mail.com",
+                Password = "password",
+                Street = "37 Warren Hill",
+                Town = "Newry",
+                County = "Down",
+                Postcode = "BT34 2PH",
+                MobileNumber = "00112233456",
+                HomeNumber = "02830303030",
+                Qualifications = "8 GCSE's, Maths, A, English B, Social Care A, Accounts C,Economics C Art B, RE C, PSE C",
+                PhotoUrl = "/images/carer4.jpg",             
             });
 
 
@@ -121,7 +141,9 @@ namespace CMS.Data.Services
                 Email = "joe@mail.com",
                 GP = "Dr A Blagg",
                 SocialWorker = " Dr Minnie Mouse",
-                CarePlan = "See File for details"
+                CarePlan = "Joe is an elderly gentleman who lives on his own.  " +
+                "He needs help with most things, " + "Medication, dressing, breakfast, lunch, dinner.  "+
+                "He suffers from incontinence and needs to be changed regularly.  "
 
                 //  ....
             });
@@ -143,7 +165,9 @@ namespace CMS.Data.Services
                 Email = "Mary@mail.com",
                 GP = "Dr A Blagg",
                 SocialWorker = " Dr Minnie Mouse",
-                CarePlan = "See File for details"
+                CarePlan =  "Mary is an elderly woman who lives on her own.  " +
+                "She needs help with most things.  " + "Medication, dressing, breakfast, lunch, dinner, changing tv channels.  "+
+                "Please ensure her medication is given on time.  "
                 // ....
             });
 
@@ -165,7 +189,10 @@ namespace CMS.Data.Services
                 Email = "Tom@mail.com",
                 GP = "Dr A Blagg",
                 SocialWorker = " Dr Minnie Mouse",
-                CarePlan = "See File for details"
+                CarePlan = "Tom a former bank manager, has problems with his hands and finds it very difficult to dress.  "
+                +"He finds it difficult to use the tv remote, he is suffering from dementia, but has many friends that call.  "+
+                "He is a very proud man who especially likes to be dressed right.  He needs help with putting on washes, and transferring clothes"+
+                " to the tumble drier."
                 // ....
             });
 
@@ -187,7 +214,10 @@ namespace CMS.Data.Services
                 Email = "Donald@mail.com",
                 GP = "Dr A Blagg",
                 SocialWorker = " Dr Minnie Mouse",
-                CarePlan = "See File for details"
+                CarePlan = "Donald used to work in the tv industry and loves chatting.  He is very immobile.  "+
+                "He needs help with medication, washing and dressing.  "+"Donald has lost a substantial amount of weight after a recent operation.  "+
+                 "He needs reminding to eat.  Please ensure that he eats.  There is always plenty of food in the fridge.  "+
+                 "The family are very concerned about him at the moment."   
                 // ....
             });
 
@@ -209,7 +239,10 @@ namespace CMS.Data.Services
                 Email = "Mickey@mail.com",
                 GP = "Dr A Blagg",
                 SocialWorker = " Dr Minnie Mouse",
-                CarePlan = "See File for details"
+                CarePlan = "Mickey loves to laugh.  Mickey has some mobility issues but can dress himself.  "+
+                "He needs help with his medication.  He also has some memory problems, his wife who was a doctor, died recently.  "+
+                "That has had an effect on him.  He needs help with washing, putting on the dishwasher"+
+                " and putting on the washing machine and tumble drier.  " + "He also needs help with breakfast, lunch and dinner and getting dressed for bed.  "
                 // ....
             });
 
@@ -230,7 +263,9 @@ namespace CMS.Data.Services
                 Email = "Nancy@mail.com",
                 GP = "Dr A Blagg",
                 SocialWorker = " Dr Minnie Mouse",
-                CarePlan = "See File for details"
+                CarePlan = "Nancy is an elderly woman who lives on her own.  A retired teacher.  " +
+                "She needs help with most things.  " + "Medication, dressing, breakfast, lunch, dinner, changing tv channels.  "+
+                "Please ensure her medication is given on time.  "
                 // ....
             });
 
@@ -252,7 +287,10 @@ namespace CMS.Data.Services
                 Email = "Brian@mail.com",
                 GP = "Dr A Blagg",
                 SocialWorker = " Dr Minnie Mouse",
-                CarePlan = "See File for details"
+                CarePlan ="Brian loves to chat and you will often see him with his painting brushes.  Brian has some mobility issues but can dress himself.  "+
+                "He needs help with his medication.  He also has some memory problems.  "+
+                "He needs help with washing, putting on the dishwasher"+
+                " and putting on the washing machine and tumble drier.  " + "He also needs help with breakfast, lunch and dinner and getting dressed for bed.  "
                 // ....
             });
 
@@ -274,7 +312,9 @@ namespace CMS.Data.Services
                 Email = "Niall@mail.com",
                 GP = "Dr A Blagg",
                 SocialWorker = " Dr Minnie Mouse",
-                CarePlan = "See File for details"
+                CarePlan =  "Niall is an elderly gentleman who lives on his own.  " +
+                "He needs help with most things, " + "Medication, dressing, breakfast, lunch, dinner.  "+
+                "He suffers from incontinence and needs to be changed regularly.  "
                 // ....
             });
 
@@ -296,7 +336,8 @@ namespace CMS.Data.Services
                 Email = "Michael@mail.com",
                 GP = "Dr A Blagg",
                 SocialWorker = " Dr Minnie Mouse",
-                CarePlan = "See File for details"
+                CarePlan = "Michael is an elderly gentleman who lives on his own.  " +
+                "He needs help with most things, " + "Medication, dressing, breakfast, lunch, dinner."
                 // ....
             });
 
@@ -317,7 +358,10 @@ namespace CMS.Data.Services
                 Email = "Mary@mail.com",
                 GP = "Dr A Blagg",
                 SocialWorker = " Dr Minnie Mouse",
-                CarePlan = "See File for details"
+                CarePlan = "John loves to laugh.  John has some mobility issues but can dress himself.  "+
+                "He needs help with his medication.  He also has some memory problems, his wife died recently.  "+
+                "That has had an effect on him.  He needs help with washing, putting on the dishwasher"+
+                " and putting on the washing machine and tumble drier.  " + "He also needs help with breakfast, lunch and dinner and getting dressed for bed.  "
                 // ....
             });
 
@@ -385,7 +429,7 @@ namespace CMS.Data.Services
 
             // ============== Schedule CareEvents APPOINTMENTS =================
 
-            // Appointments patient 1 carer 1
+            // Appointments patient 1 carer 2
             var ap1 = svc.SchedulePatientCareEvent(new PatientCareEvent
             {
                 CarePlan = p1.CarePlan,
@@ -393,6 +437,7 @@ namespace CMS.Data.Services
                 PatientId = p1.Id,               
                 UserId = c2.Id,
             });
+                        //  Appointments patient 2 carer 2
             var ap2 = svc.SchedulePatientCareEvent(new PatientCareEvent
             {
                 CarePlan = p2.CarePlan,
@@ -400,6 +445,7 @@ namespace CMS.Data.Services
                 PatientId = p2.Id,              
                 UserId = c2.Id,
             });
+                        //  Appointments patient 3 carer 2
             var ap3 = svc.SchedulePatientCareEvent(new PatientCareEvent
             {
                 CarePlan = p3.CarePlan,
@@ -408,7 +454,7 @@ namespace CMS.Data.Services
                 UserId = c2.Id,
             });
 
-            // // Appointments patient 2 carer 2
+            //  Appointments patient 4 carer 2
             var ap4 = svc.SchedulePatientCareEvent(new PatientCareEvent
             {
                 CarePlan = p4.CarePlan,  
@@ -416,6 +462,7 @@ namespace CMS.Data.Services
                 PatientId = p4.Id,
                 UserId = c2.Id,
             });
+                        //  Appointments patient 5 carer 2
             var ap5 = svc.SchedulePatientCareEvent(new PatientCareEvent
             {
                 CarePlan = p5.CarePlan,
@@ -423,6 +470,7 @@ namespace CMS.Data.Services
                 PatientId = p5.Id,
                 UserId = c2.Id,
             });           
+                        //  Appointments patient 6 carer 2
             var ap6 = svc.SchedulePatientCareEvent(new PatientCareEvent
             {
                 CarePlan = p6.CarePlan,    
@@ -431,7 +479,7 @@ namespace CMS.Data.Services
                 UserId = c2.Id,
             });
             
-            // // Appointments patient 3 carer 2
+            // // Appointments patient 7 carer 2
             var ap7 = svc.SchedulePatientCareEvent(new PatientCareEvent
             {
                 CarePlan = p7.CarePlan, 
@@ -439,7 +487,7 @@ namespace CMS.Data.Services
                 PatientId = p7.Id,
                 UserId = c2.Id,
             });
-            
+                        // // Appointments patient 8 carer 2
             var ap8 = svc.SchedulePatientCareEvent(new PatientCareEvent
             {
                 CarePlan = p8.CarePlan,  
@@ -448,50 +496,50 @@ namespace CMS.Data.Services
                 UserId = c2.Id,
             });
             
-            // Appointments patient 4 carer 3
+            // Appointments patient 9 carer 2
             var ap9 = svc.SchedulePatientCareEvent(new PatientCareEvent        
             {
-                CarePlan = p4.CarePlan,   
-                DateTimeOfEvent = new DateTime(2023, 05, 28, 7,30,0),
-                PatientId = p4.Id,
-                UserId = c3.Id,
+                CarePlan = p9.CarePlan,   
+                DateTimeOfEvent = new DateTime(2023, 05, 28, 11,00,0),
+                PatientId = p9.Id,
+                UserId = c2.Id,
             });            
             var ap10 = svc.SchedulePatientCareEvent(new PatientCareEvent        
             {
-                CarePlan = p4.CarePlan,  
-                DateTimeOfEvent = new DateTime(2023, 05, 28, 12,45,0),
-                PatientId = p4.Id,
-                UserId = c3.Id,
+                CarePlan = p10.CarePlan,  
+                DateTimeOfEvent = new DateTime(2023, 05, 28, 11,30,0),
+                PatientId = p10.Id,
+                UserId = c2.Id,
             });            
             var ap11 = svc.SchedulePatientCareEvent(new PatientCareEvent        
             {
-                CarePlan = p4.CarePlan,   
-                DateTimeOfEvent = new DateTime(2023, 05, 28, 17,50,0),
-                PatientId = p4.Id,
+                CarePlan = p1.CarePlan,   
+                DateTimeOfEvent = new DateTime(2023, 05, 28, 12,00,0),
+                PatientId = p1.Id,
                 UserId = c3.Id,
             });
             
-            // Appointments patient 5 carer 3
+            // Appointments patient 2 carer 3
             var ap12 = svc.SchedulePatientCareEvent(new PatientCareEvent        
             {
-                CarePlan = p5.CarePlan, 
-                DateTimeOfEvent = new DateTime(2023, 05, 28, 6,45,0),
-                PatientId = p5.Id,
-                UserId = c2.Id,
+                CarePlan = p2.CarePlan, 
+                DateTimeOfEvent = new DateTime(2023, 05, 28, 12,30,0),
+                PatientId = p2.Id,
+                UserId = c3.Id,
             });
             var ap13 = svc.SchedulePatientCareEvent(new PatientCareEvent        
             {
-                CarePlan = p5.CarePlan,   
-                DateTimeOfEvent = new DateTime(2023, 05, 28, 11,0,0),
-                PatientId = p5.Id,
+                CarePlan = p3.CarePlan,   
+                DateTimeOfEvent = new DateTime(2023, 05, 28, 13,00,0),
+                PatientId = p3.Id,
                 UserId = c3.Id,
             });
             
             var ap14= svc.SchedulePatientCareEvent(new PatientCareEvent        
             {
-                CarePlan = p5.CarePlan,   
-                DateTimeOfEvent = new DateTime(2023, 05, 28, 22,0,0),
-                PatientId = p5.Id,
+                CarePlan = p4.CarePlan,   
+                DateTimeOfEvent = new DateTime(2023, 05, 28, 13,30,0),
+                PatientId = p4.Id,
                 UserId = c3.Id,
             });
             

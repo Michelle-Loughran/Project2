@@ -3,7 +3,7 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
-        <li class="breadcrumb-item"><a asp-controller="Carer" asp-action="Index">Carers</a></li>
+        <li class="breadcrumb-item"><a asp-controller="User" asp-action="Index">Users</a></li>
         <li class="breadcrumb-item active" aria-current="page">Details</li>
     </ol>
 </nav>
@@ -58,13 +58,13 @@
 
 <!-- action options -->
         <div class="mt-4 mb-4"> 
-        <a asp-controller="Carer" asp-action="Index" class="btn btn-primary"><i class="bi bi-list"></i>
+        <a asp-controller="User" asp-action="Index" class="btn btn-primary"><i class="bi bi-list"></i>
             Carer List
         </a>    
-        <a asp-controller="Carer" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary"><i class="bi bi-pen"></i>
+        <a asp-controller="User" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary"><i class="bi bi-pen"></i>
             Edit Carer
         </a>  
-        <a asp-controller="Carer" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-primary"><i class = "bi bi-trash"></i>
+        <a asp-controller="User" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-primary"><i class = "bi bi-trash"></i>
             Delete
         </a> 
       </div>

@@ -1,7 +1,20 @@
 ﻿@model Paged<User>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Users</li>
+    </ol>
+</nav>
+      @* @if (User.IsInRole(Role.manager.ToString())) *@
+<div class="card border rounded shadow p-4">
+       <div class="d-flex align-items-center justify-content-between">
+        <h3>User List</h3>
+       <a asp-roles="admin, manager" asp-action="Register" class="btn btn-primary btn-sm">
+            <i class="bi bi-bag-plus-fill me-2" title="Add User"></i>
+            <span>Add User</span>
+        </a>
+    </div>
 
-<h3 class="mb-3">User List</h3>
-  
 <table class="table table-hover">
     <thead>
         <tr>
@@ -12,7 +25,7 @@
                     asp-route-direction=@Model.Direction 
                     asp-route-page=@Model.CurrentPage 
                     asp-route-size=@Model.PageSize >
-                        <vc:sort-order field="id" orderby=@Model.OrderBy direction=@Model.Direction />  
+                    <vc:sort-order field="id" orderby=@Model.OrderBy direction=@Model.Direction />  
                 </a>  
 
             </th>
@@ -47,17 +60,24 @@
                 <td>@u.Name</td>
                 <td>@u.Email</td>
                 <td>@u.Role</td>  
-                <td>
-                    <a asp-action="Update" asp-route-id="@u.Id">
-                        <i class="bi bi-pencil-fill"></i>
-                    </a>                    
+                <td class="d-flex gap-1">
+                <a asp-action="Details" asp-route-id="@u.Id">
+                        <i class="bi bi-info-circle" title="View User"></i>
+                    </a>
+                <a asp-roles="manager, admin" asp-action="Update" asp-route-id="@u.Id">
+                            <i class="bi bi-pencil"  title="Update User"></i>
+                </a>    
+                <a asp-roles="manager,admin" asp-action="Delete" asp-route-id=@u.Id>
+                            <i class="by bi-trash"title="Delete User"></i>
+                </a> 
+
                 </td>                
             </tr>
         }        
     </tbody>
 </table>
-
+</div>
 <vc:paginator action="Index" rows=@Model.TotalRows pages=@Model.TotalPages current=@Model.CurrentPage size=@Model.PageSize  />
-
+</div>
 
 
