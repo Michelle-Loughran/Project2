@@ -31,8 +31,11 @@
                         <a class="nav-link"  asp-controller="Condition" asp-action="Index" asp-roles="manager, admin">Conditions</a>    
                         <a class="nav-link " asp-controller="Patient" asp-action="Index" asp-roles="manager, carer, admin">Patients</a>
                         <a class="nav-link " asp-controller="Carer" asp-action="Index" asp-roles="manager, admin">Carers</a>
-                        <a class="nav-link"  asp-controller="PatientCareEvent" asp-action="Scheduled" asp-roles="manager, admin, carer">Appointments</a>  
-                    </div>
+                        <a class="nav-link"  asp-controller="Appointment" asp-action="Index" asp-roles="manager, admin, carer">Appointments</a> 
+                        <a class="nav-link" asp-controller="PatientCareEvent"
+                                asp-action="Index"
+                                asp-roles="manager, admin, carer">PatientCareEvents</a>
+                        </div>
                     <!-- AMC The login partial is added here for authentication -->
                     <partial name="_LoginPartial" />      
                 </div>

@@ -46,7 +46,9 @@ public class User
     public Role Role { get; set; }
     public int UserId { get; set; }
 
-    public string Name => Firstname + " " + Surname;
+    // public string Name => Firstname + " " + Surname;
+    public string Name => (Firstname ?? "") + " " + (Surname ?? "");
+
     public int Age => (DateTime.Now - DOB).Days / 365;
 
 
@@ -62,7 +64,6 @@ public class User
     [Url]
     public string PhotoUrl { get; set; }
   
-
 
 }
 

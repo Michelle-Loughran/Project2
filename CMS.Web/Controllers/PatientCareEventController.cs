@@ -18,17 +18,21 @@ namespace CMS.Web.Controllers
         }
 
 
-        // [Authorize(Roles="admin, manager")]
+        [Authorize(Roles="admin, carer, manager")]
         public IActionResult Index()
         {
             // load patientcare-events using service and pass to view
             
             var pce = svc.GetAllPatientCareEvents();
-
+            if (pce is null)
+            {
+                Alert("Patient Care Event Does not Exist", AlertType.warning);
+                return RedirectToAction(nameof(Index));
+            }
             return View(pce);
         }
 
-        [Authorize(Roles="admin, carer, manager")]
+        [Authorize(Roles="carer, manager")]
 
         public IActionResult Scheduled()
         {

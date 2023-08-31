@@ -1,3 +1,7 @@
+using System.Text.Json.Serialization;
+using System;
+using System.ComponentModel.DataAnnotations;
+
 namespace CMS.Data.Entities;
 
 public class FamilyMember
@@ -15,5 +19,6 @@ public class FamilyMember
 
     // Foreign keys the family member of the patient
     public int MemberId { get; set; }
+    [JsonIgnore]
     public User Member { get; set; }
 }

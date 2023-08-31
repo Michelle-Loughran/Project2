@@ -1,19 +1,19 @@
-@model IList<PatientCareEvent>
+@model IList<Appointment>
 
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
-        <li class="breadcrumb-item active" aria-current="page">PatientCareEvens</li>
+        <li class="breadcrumb-item active" aria-current="page">Appointments</li>
     </ol>
 </nav>
     
 <div class="card border rounded shadow mt-4 p-4">
     <div class="d-flex align-items-center justify-content-between">
          <h3>Scheduled Care Appointment List</h3>
-        @* <a asp-roles="manager" asp-action="Schedule" class="btn btn-primary btn-sm">
+        <a asp-roles="manager" asp-action="Schedule" class="btn btn-primary btn-sm">
             <i class="bi bi-bag-plus-fill me-2" title="Schedule Care Event"></i>
             <span>Schedule Care Event</span>
-        </a> *@
+        </a>
     </div>
   
     <table class="table table-striped">
@@ -27,13 +27,13 @@
             <th>Actions</th>
         </tr>
     </thead>
-          <tbody>
+<tbody>
             @foreach(var a in Model) 
             {
             <tr>
                 <td>@a.Id</td>
-                <td>@a.DateTimeOfEvent.ToShortDateString()</td>
-                <td>@a.DateTimeOfEvent.ToShortTimeString()</td>              
+                <td>@a.Date.ToShortDateString()</td>
+                <td>@a.Time.ToShortTimeString()</td>              
                 <td>@a.User.Name </td>
                 <td>@a.Patient.Name</td> 
 

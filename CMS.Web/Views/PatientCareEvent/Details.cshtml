@@ -3,7 +3,7 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
-        <li class="breadcrumb-item"><a asp-controller="Carer" asp-action="Index">Carers</a></li>
+        <li class="breadcrumb-item"><a asp-controller="PatientCareEvent" asp-action="Index">PatientCareEvents</a></li>
         <li class="breadcrumb-item active" aria-current="page">Details</li>
     </ol>
 </nav>
@@ -18,7 +18,13 @@
                 <dt class=col-sm-5>CarePlan</dt>
                 <dd class="col-sm-7">@Model.CarePlan</dd>     
                 <dt class=col-sm-5>Issues</dt>
-                <dd class="col-sm-7">@Model.Issues</dd>                
+                <dd class="col-sm-7">@Model.Issues</dd>
+                <dt class=col-sm-5>Date of Event</dt>
+                <dd class="col-sm-7">@Model.DateTimeOfEvent.ToShortDateString()</dd>
+                <dt class=col-sm-5>Time</dt>
+                <dd class="col-sm-7">@Model.DateTimeCompleted.ToShortTimeString()</dd>
+                <dt class=col-sm-5>Carer Attending</dt>
+                <dd class="col-sm-7">@Model.User.Name</dd>                           
         </dl>
   
     </div>

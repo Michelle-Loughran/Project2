@@ -65,6 +65,7 @@ namespace CMS.Web.Controllers
     //     return View(user);
     // }
         // HTTP GET - Display Register page
+        
         public IActionResult Register()
         {
             return View();

@@ -1,0 +1,12 @@
+@model Patient
+
+  <ul class="list-group">
+     @foreach (var c in Model.PatientConditions)
+     {
+        <li class="list-group-item">
+           @c.Condition.Name
+        </li>
+     }
+  </ul>
+
+

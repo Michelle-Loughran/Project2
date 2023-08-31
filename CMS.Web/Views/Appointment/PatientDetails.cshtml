@@ -1,0 +1,93 @@
+@model Patient
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+        <li class="breadcrumb-item"><a asp-controller="Patient" asp-action="Index">Patients</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Details</li>
+    </ol>
+</nav>
+
+<div class="card rounded shadow mt-4 p-3">
+    <h3 class="mb-4">Patient Details</h3>
+
+    <div class="row">
+        <div class="col-8">
+            <dl class="row">
+                <dt class=col-sm-5>Id</dt>
+                <dd class="col-sm-7">@Model.Id</dd>
+                <dt class=col-sm-5>Title</dt>
+                <dd class="col-sm-7">@Model.Title</dd>
+                <dt class="col-sm-5">Firstname</dt>
+                <dd class="col-sm-7">@Model.Firstname</dd>
+                <dt class="col-sm-5">Surname</dt>
+                <dd class="col-sm-7">@Model.Surname</dd>
+                <dt class="col-sm-5">NationalInsuranceNo</dt>
+                <dd class="col-sm-7">@Model.NationalInsuranceNo</dd>
+                <dt class="col-sm-5">DOB</dt>
+                <dd class="col-sm-7">@Model.DOB.ToShortDateString()</dd>
+                <dt class="col-sm-5">Age</dt>
+                <dd class="col-sm-7">@Model.Age</dd>
+                <dt class="col-sm-5">Street</dt>
+                <dd class="col-sm-7">@Model.Street</dd>
+                <dt class="col-sm-5">Town</dt>
+                <dd class="col-sm-7">@Model.Town</dd>
+                <dt class="col-sm-5">County</dt>
+                <dd class="col-sm-7">@Model.County</dd>
+                <dt class="col-sm-5">Postcode</dt>
+                <dd class="col-sm-7">@Model.Postcode </dd>
+                <dt class="col-sm-5">MobileNumber</dt>
+                <dd class="col-sm-7">@Model.MobileNumber </dd>
+                <dt class="col-sm-5">HomeNumber</dt>
+                <dd class="col-sm-7">@Model.HomeNumber </dd>
+                <dt class="col-sm-5">Email</dt>
+                <dd class="col-sm-7">@Model.Email </dd>
+                <dt class="col-sm-5">GP</dt>
+                <dd class="col-sm-7">@Model.GP </dd>
+                <dt class="col-sm-5">SocialWorker</dt>
+                <dd class="col-sm-7">@Model.SocialWorker </dd>
+                <dt class="col-sm-5">CarePlan</dt>
+                <dd class="col-sm-7">@Model.CarePlan </dd>
+            </dl>
+        </div>
+
+        <!-- photo -->
+        <div class="col-4">
+            <img src="@Model.PhotoUrl" class="img-fluid">
+            
+            <h5 class="mt-3">Conditions</h5>
+            <partial name="_Conditions" />
+        </div>
+        
+    </div>
+
+    <!-- action options -->
+    <div class="mt-4 mb-4">
+        <a asp-controller="Patient" asp-action="Index" class="btn btn-primary">
+            <i class="bi bi-list"></i>
+            Patient List
+        </a>
+
+        <a asp-roles="manager" asp-controller="Patient" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">
+            <i class="bi bi-pen"></i>
+            Edit Patient
+        </a>
+
+        <a asp-roles="manager" asp-controller="Patient" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-primary">
+            <i class="bi bi-trash"></i>
+            Delete
+        </a>
+
+        <a asp-roles="manager" asp-controller="PatientCareEvent" asp-action="Schedule" asp-route-Id="@Model.Id" class="btn btn-secondary">
+            <i class="bi-bag-plus-fill"></i>
+            Schedule Care Event
+        </a>
+    </div>
+
+</div>
+
+<div class="card rounded shadow mt-4 p-3">
+    <h4>Care Events</h4>
+    <partial name="_CareEvents" />
+</div>
+

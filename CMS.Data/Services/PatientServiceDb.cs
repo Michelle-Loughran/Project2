@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using CMS.Data.Repositories;
 using CMS.Data.Entities;
 using CMS.Data.Security;
+
 using System.Runtime.Intrinsics.X86;
 using System.IO;
 using Microsoft.VisualBasic;
@@ -500,6 +501,113 @@ public class PatientServiceDb : IPatientService
         db.SaveChanges();
         return carer;
     }
+  //  ====================== Appointments Management==================================
+    public IList<Appointment> GetAllAppointments()
+    {
+        return db.Appointments
+        .Include(x => x.Patient)
+        .Include(x => x.User)
+        .OrderByDescending(x => x.Date)
+        .ToList();
+    }
+
+    public IList<Appointment> GetAppointmentsBySignedInUser(int id)
+    {           
+                return db.Appointments
+                .Include(u => u.User)
+                .Include(e => e.Patient)
+                 .Where(ap => ap.UserId == id)
+                .ToList();
+    }
+    public Appointment GetAppointmentById(int id)
+    {
+        return db.Appointments
+        .Include(u => u.User)
+        .Include(p => p.Patient)
+        .FirstOrDefault(u => u.Id == id);
+    }
+    public Appointment AddAppointment(Appointment appointment)
+    {
+        //check Appointment being passed does not exist
+        var exists = GetAppointmentById(appointment.Id);
+
+        if (exists != null)
+        {
+            return null; // appointment cannot be added as they already exist
+        }
+        var patient = GetPatientById(appointment.PatientId);
+        var user = GetCarerById(appointment.UserId);
+
+        if (patient is null || user is null)
+        {
+            return null; // Appointment cannot be added as as no such patient or user (carer)
+        }
+        var app = new Appointment
+        {
+
+            PatientFirstname = appointment.PatientFirstname,
+            PatientSurname = appointment.PatientSurname,
+            CarerFirstname = appointment.CarerFirstname,
+            CarerSurname = appointment.CarerSurname,
+            Date = appointment.Date,
+            Time = appointment.Time,
+            DateTimeCompleted = appointment.DateTimeCompleted,
+            PatientId = appointment.PatientId,
+            UserId = appointment.UserId,
+            Role = appointment.Role,
+        };
+        // Add appointment to db and save
+        db.Appointments.Add(appointment);
+        db.SaveChanges();
+        return appointment; // return added appointment to database
+    }
+    public Appointment UpdateAppointment(Appointment ua)
+    {
+        // verify the appointment exists
+        var appointment = GetAppointmentById(ua.Id);
+          if (appointment == null)
+        {
+            return null;
+        }
+
+        // update the information for the appointment and save
+        appointment.PatientFirstname = ua.PatientFirstname;
+        appointment.PatientSurname = ua.PatientSurname;
+        appointment.CarerFirstname = ua.CarerFirstname;
+        appointment.CarerSurname = ua.CarerSurname;
+        appointment.Date = ua.Date;
+        appointment.Time = ua.Time;
+        appointment.DateTimeCompleted = ua.DateTimeCompleted;
+        appointment.PatientId = ua.PatientId;
+        appointment.UserId = ua.UserId;
+
+        db.SaveChanges();
+        return appointment;
+    }
+    public Appointment CompleteAppointment (Appointment ca)
+    {
+    var appointment = GetAppointmentById (ca.Id);
+    if (appointment == null)
+      {
+            return null; // appointment  does not exist
+        }
+
+        appointment.DateTimeCompleted = ca.DateTimeCompleted;
+
+        db.SaveChanges();
+        return appointment;
+    }
+     public bool DeleteAppointment (int id)
+     {
+        var delapp = db.Appointments.FirstOrDefault(ap => ap.Id == id);
+        if (delapp == null)
+        {
+             return false;
+        }
+        db.Appointments.Remove(delapp);
+        db.SaveChanges();
+        return true;
+    }
 
     // ------------------ Member Management ----------------
     // retrieve list of Carers with their main details
@@ -624,7 +732,7 @@ public class PatientServiceDb : IPatientService
         return db.PatientCareEvents
                  .Include(e => e.User)
                  .Include(e => e.Patient)
-                 .Where(pce => pce.UserId == id && pce.DateTimeCompleted == DateTime.MaxValue)
+                 .Where(pce => pce.UserId == id && pce.DateTimeCompleted == DateTime.Now)
                  .ToList();
     }
 
@@ -649,13 +757,22 @@ public class PatientServiceDb : IPatientService
 
         var pce = new PatientCareEvent
         {
+            PatientFirstname = ce.PatientFirstname,
+            PatientSurname = ce.PatientSurname,
+            CarerFirstname = ce.CarerFirstname,
+            CarerSurname = ce.CarerSurname,
             DateTimeOfEvent = ce.DateTimeOfEvent,
+            Time = ce.Time,
+            ScheduledDuration = ce.ScheduledDuration,
+            DateTimeCompleted = ce.DateTimeCompleted,
+            ActualDuration = ce.ActualDuration,
             CarePlan = ce.CarePlan,
+            Issues  =   ce.Issues,
             PatientId = ce.PatientId,
             UserId = ce.UserId
             // Issues and DateTimeCompleted are not set at this time
         };
-
+        var actualDuration = ce.DateTimeCompleted - ce.DateTimeOfEvent;
         //add pce to database
         db.PatientCareEvents.Add(pce);
         db.SaveChanges();
@@ -669,7 +786,13 @@ public class PatientServiceDb : IPatientService
         {
             return null; // Careevent  does not exist
         }
-
+        careevent.PatientFirstname = ce.PatientFirstname;
+        careevent.PatientSurname = ce.PatientSurname;
+        careevent.CarerFirstname = ce.CarerFirstname;
+        careevent.CarerSurname = ce.CarerSurname;
+        careevent.DateTimeOfEvent = ce.DateTimeOfEvent;
+        careevent.Time = ce.Time;
+        careevent.ActualDuration = ce.ActualDuration;
         careevent.Issues = ce.Issues;
         careevent.DateTimeCompleted = ce.DateTimeCompleted;
 
@@ -698,16 +821,25 @@ public class PatientServiceDb : IPatientService
         {
             return null;
         }
-        // update patient care event      
+        // update patient care event
+        patientCareEvent.PatientFirstname = updated.PatientFirstname;
+        patientCareEvent.PatientSurname = updated.PatientSurname;
+        patientCareEvent.CarerFirstname = updated.CarerFirstname;
+        patientCareEvent.CarerSurname = updated.CarerSurname;
+        patientCareEvent.Time = updated.Time;
+        patientCareEvent.DateTimeOfEvent = updated.DateTimeOfEvent;
+        patientCareEvent.ScheduledDuration = updated.ScheduledDuration;
+        patientCareEvent.DateTimeCompleted = updated.DateTimeCompleted;
+        patientCareEvent.ActualDuration = updated.ActualDuration;        
         patientCareEvent.PatientId = updated.PatientId;
         patientCareEvent.UserId = updated.UserId;
         patientCareEvent.CarePlan = updated.CarePlan;
         patientCareEvent.Issues = updated.Issues;
-        patientCareEvent.DateTimeOfEvent = updated.DateTimeOfEvent;
 
         db.SaveChanges();
         return patientCareEvent;
     }
+
 
     //  ====================== Condition Management==================================
     public IList<Condition> GetAllConditions(string order = null)

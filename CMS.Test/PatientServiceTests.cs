@@ -620,9 +620,14 @@ public class PatientServiceTests
         });
 
         // act
-        var pce = svc.SchedulePatientCareEvent( new PatientCareEvent {
-            DateTimeOfEvent =  new DateTime(2023, 06, 1), CarePlan = "CarePlan", Issues = "Nothing to report",
-             PatientId = p.Id, UserId= c.Id
+        var pce = svc.SchedulePatientCareEvent( new PatientCareEvent 
+        {
+            DateTimeOfEvent =  new DateTime(2023, 06, 1), 
+            Time = new TimeOnly(08,30),
+            CarePlan = "CarePlan", 
+            Issues = "Nothing to report",
+            PatientId = p.Id, 
+            UserId= c.Id
         });
 
         Assert.NotNull(p);
@@ -658,9 +663,13 @@ public class PatientServiceTests
             // ....
         });
         
-        var pce1 = svc.SchedulePatientCareEvent( new PatientCareEvent {
-            DateTimeOfEvent =  new DateTime(2023, 06, 1), CarePlan = "CarePlan", Issues = "Nothing to report",
-             PatientId = p.Id, UserId= c.Id
+        var pce1 = svc.SchedulePatientCareEvent( new PatientCareEvent 
+        {
+            DateTimeOfEvent =  new DateTime(2023, 06, 1), 
+            Time = new TimeOnly (9,00),
+            CarePlan = "CarePlan", Issues = "Nothing to report",
+            PatientId = p.Id,
+            UserId= c.Id
         });
 
         // act - create care event in past (before last care event)
@@ -718,9 +727,14 @@ public class PatientServiceTests
             // ....
         });
 
-        var pce = svc.SchedulePatientCareEvent( new PatientCareEvent {
-            DateTimeOfEvent =  new DateTime(2023, 06, 1), CarePlan = "CarePlan", Issues = "Nothing to report",
-             PatientId = p.Id, UserId= c.Id
+        var pce = svc.SchedulePatientCareEvent( new PatientCareEvent 
+        {
+            DateTimeOfEvent =  new DateTime(2023, 06, 1), 
+            Time = new TimeOnly (9,30), 
+            CarePlan = "CarePlan", 
+            Issues = "Nothing to report",
+            PatientId = p.Id, 
+            UserId= c.Id
         });
         var gpce = svc.GetPatientCareEventById(pce.Id);
         // assert
@@ -758,9 +772,16 @@ public class PatientServiceTests
             // ....
         });
 
-        var pce = svc.SchedulePatientCareEvent( new PatientCareEvent {
-            DateTimeOfEvent =  new DateTime(2023, 06, 1), CarePlan = "CarePlan", Issues = "Nothing to report",
-             PatientId = p.Id, UserId= c.Id
+        var pce = svc.SchedulePatientCareEvent( new PatientCareEvent 
+        {
+            
+        DateTimeOfEvent =  new DateTime(2023, 06, 1),
+        Time = new TimeOnly (9,30),
+         CarePlan = "CarePlan", 
+         Issues = "Nothing to report",
+        PatientId = p.Id, 
+        UserId= c.Id
+
         });
 
         // act
@@ -997,7 +1018,8 @@ public class PatientServiceTests
       
     }
 
-} 
+
+}
 
 
 static class Factory

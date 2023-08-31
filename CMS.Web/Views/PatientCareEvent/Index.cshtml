@@ -9,7 +9,7 @@
       @* @if (User.IsInRole(Role.manager.ToString())) *@
 <div class="card border rounded shadow p-4">
 
-        <div class="d-flex align-items-center justify-content-between"></div>
+        <div class="d-flex align-items-center justify-content-between">
     <h3>PatientCareEvent List</h3>
     <a asp-roles="manager" asp-action="Create" class="btn btn-primary btn-sm">
             <i class="bi bi-bag-plus-fill me-2" title="Add CareEvent"></i>
@@ -21,9 +21,14 @@
     <thead>
         <tr>
             <th>Id</th> 
-            <th>DateTime</th> 
-            <th>Carer Id</th> 
-            <th>Patient Id</th> 
+            <th>DateTime</th>
+            <th>Time</th>  
+            <th>Carer Id</th>
+            @* <th>Firstname</th> *@
+            @* <th>Surname</th>     *@
+            <th>Patient Id</th>
+            @* <th>Firstname</th>  *@
+            @* <th>Surname</th>    *@
             <th>Actions</th>
         </tr>
     </thead>
@@ -32,15 +37,21 @@
             <tr>
                 <td>@pce.Id</td> 
                 <td>@pce.DateTimeOfEvent.ToShortDateString()</td>
+                <td>@pce.DateTimeOfEvent.ToShortTimeString()</td>
                 <td>@pce.UserId</td> 
+                @* <td>@pce.User?.Firstname</td> *@
+                @* <td>@pce.User?.Surname</td>   *@
                 <td>@pce.PatientId</td>
+                @* <td>@pce.Patient?.Firstname</td>
+                <td>@pce.Patient?.Surname</td> *@
+
                 <td class="d-flex gap-1">
                     <a asp-action="Details" asp-route-id="@pce.Id">
-                            <i class="bi bi-pencil"  title="View CareEvent"></i>
+                        <i class="bi bi-info-circle"  title="View CareEvent"></i>
                     </a> 
                     @* @if (User.IsInRole("Admin") || User.IsInRole("Manager"))  *@
                     
-                             <a asp-roles="manager,admin" asp-action="Edit" asp-route-id="@pce.Id">
+                        <a asp-roles="manager,admin" asp-action="Edit" asp-route-id="@pce.Id">
                             <i class="bi bi-pencil"  title="Edit CareEvent"></i>
                         </a> 
                     

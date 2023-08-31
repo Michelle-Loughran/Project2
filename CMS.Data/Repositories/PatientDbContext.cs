@@ -26,6 +26,8 @@ namespace CMS.Data.Repositories
         {
             // remove in production 
              optionsBuilder
+                .LogTo(Console.WriteLine, LogLevel.Information)
+                .EnableSensitiveDataLogging()
                .UseSqlite("Filename= data.db")
                //.LogTo(Console.WriteLine, LogLevel.Information).EnableSensitiveDataLogging()
                ;               

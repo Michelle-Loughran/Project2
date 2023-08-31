@@ -17,9 +17,9 @@
                 <td>@e.User.Name</td>
                 <td>@(e.DateTimeCompleted == DateTime.MaxValue ? "No" : "Yes") </td> 
                 <td>                    
-                    <a asp-condition="@e.UserId == User.GetSignedInUserId() && e.DateTimeCompleted == DateTime.MaxValue" asp-roles="manager, carer" asp-controller="PatientCareEvent" asp-action="Complete" asp-route-id="@e.Id">Complete</a>                          
-                    <a asp-condition="e.DateTimeCompleted != DateTime.MaxValue" asp-roles="manager, carer" asp-controller="PatientCareEvent" asp-action="Details" asp-route-id="@e.Id">View</a>
-                    <a asp-condition="e.DateTimeCompleted == DateTime.MaxValue" asp-roles="manager" asp-controller="PatientCareEvent" asp-action="Delete" asp-route-id="@e.Id">Delete</a>
+                    <a asp-condition="@e.UserId == User.GetSignedInUserId() && e.DateTimeCompleted == DateTime.Now" asp-roles="manager, carer" asp-controller="PatientCareEvent" asp-action="Complete" asp-route-id="@e.Id">Complete</a>                          
+                    <a asp-condition="e.DateTimeCompleted != DateTime.Now" asp-roles="manager, carer" asp-controller="PatientCareEvent" asp-action="Details" asp-route-id="@e.Id">View</a>
+                    <a asp-condition="e.DateTimeCompleted == DateTime.Now" asp-roles="manager" asp-controller="PatientCareEvent" asp-action="Delete" asp-route-id="@e.Id">Delete</a>
                 </td>
             </tr>
         }

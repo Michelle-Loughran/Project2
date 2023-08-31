@@ -17,7 +17,9 @@ public class Patient
     [Required]
     [StringLength(80, MinimumLength = 1)]
     public string Surname { get; set; } = string.Empty;
-    public string Name => Firstname + " " + Surname;
+    // public string Name => Firstname + " " + Surname;
+    public string Name => (Firstname ?? "") + " " + (Surname ?? "");
+
 
     [Required]
     [StringLength(10, MinimumLength = 1)]
@@ -75,9 +77,9 @@ public class Patient
     // Relationships
 
     // a set of care events 
-    public List<PatientCareEvent> CareEvents { get; set; }
-    public List<PatientCondition> PatientConditions { get; set; }
-    public List<FamilyMember> FamilyMembers { get; set; }
-    public List<Appointment> Appointments { get; set; }
+    public IList<PatientCareEvent> CareEvents { get; set; }
+    public IList<PatientCondition> PatientConditions { get; set; }
+    public IList<FamilyMember> FamilyMembers { get; set; }
+    public IList<Appointment> Appointments { get; set; }
 
 }
